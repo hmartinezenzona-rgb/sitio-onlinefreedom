@@ -27,7 +27,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 
 /* ===== Efectos (mismos de las plantillas) ===== */
 header#top{transition:box-shadow .3s, background .3s}
-header#top.solid{box-shadow:0 8px 24px rgba(10,22,38,.10);background:rgba(247,247,244,.98)!important}
+header#top{-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px)}
+header#top.solid{box-shadow:0 8px 24px rgba(10,22,38,.10);background:rgba(247,247,244,.86)!important}
 a[style*="border-radius: 12px"],a[style*="border-radius: 10px"],button[type=submit]{transition:transform .2s, box-shadow .2s, background .2s}
 a[style*="border-radius: 12px"]:hover,a[style*="border-radius: 10px"]:hover,button[type=submit]:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(10,22,38,.14)}
 .lift{transition:transform .25s, box-shadow .25s}
@@ -524,6 +525,7 @@ document.querySelectorAll('a[href^="https://wa.me/"]').forEach(a => {
   const box = chat.querySelector(".msg").parentElement;
   const msgs = [...box.querySelectorAll(".msg")];
   let timers = [];
+  box.style.minHeight = box.offsetHeight + "px";
   function play() {
     timers.forEach(clearTimeout); timers = [];
     box.querySelectorAll(".escribe").forEach(e => e.remove());
