@@ -80,10 +80,10 @@ a[style*="border-radius: 12px"]:hover,a[style*="border-radius: 10px"]:hover,butt
 /* barra de contacto en celular */
 .barra-movil{display:none}
 @media (max-width:720px){
-  .barra-movil{display:grid;grid-template-columns:1.3fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:25;background:#0B1628;border-top:1px solid #1B2A40;padding:10px 12px calc(10px + env(safe-area-inset-bottom))}
+  .barra-movil{display:grid;grid-template-columns:1.3fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:25;transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.7,.2,1);background:#0B1628;border-top:1px solid #1B2A40;padding:10px 12px calc(10px + env(safe-area-inset-bottom))}
   .barra-movil a{min-height:50px;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;font-weight:600;text-decoration:none;font-size:16px}
   .flotante{display:none!important}
-  body{padding-bottom:72px}
+  .barra-movil.ver{transform:none}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before{animation:none!important;transition:none!important}.js-reveal .rv,.chat-anim .msg{opacity:1!important;transform:none!important}.grad{color:#22D3A6;-webkit-text-fill-color:#22D3A6}}
 </style>
@@ -650,6 +650,18 @@ document.querySelectorAll('a[href^="https://wa.me/"]').forEach(a => {
   });
   // QR solo tiene sentido en computadora
   if (matchMedia("(max-width: 720px)").matches) document.querySelectorAll(".qr").forEach(q => q.style.display = "none");
+
+  // barra fija del celular: solo aparece cuando ya no se ven los botones del inicio ni el contacto
+  const barra = document.querySelector(".barra-movil");
+  if (barra && "IntersectionObserver" in window) {
+    const vistos = new Set();
+    const vigila = [document.querySelector(".hero a[href='#contacto']").parentElement, document.getElementById("contacto"), document.querySelector("footer")];
+    const bo = new IntersectionObserver(es => {
+      es.forEach(e => e.isIntersecting ? vistos.add(e.target) : vistos.delete(e.target));
+      barra.classList.toggle("ver", vistos.size === 0);
+    });
+    vigila.forEach(el => el && bo.observe(el));
+  } else if (barra) barra.classList.add("ver");
 
   // aparicion al bajar, escalonada
   if ("IntersectionObserver" in window && !reduce) {
