@@ -38,10 +38,10 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .rota{color:#22D3A6;display:inline-block;transition:opacity .35s,transform .35s}
 .rota.sale{opacity:0;transform:translateY(-10px)}
 .flota{position:absolute;z-index:2;display:flex;align-items:center;gap:8px;background:#FFFFFF;color:#0A1626;font-size:14px;font-weight:600;padding:10px 14px;border-radius:14px;box-shadow:0 14px 34px rgba(0,0,0,.30);animation:flota 5s ease-in-out infinite}
-.flota.f1{left:-6px;top:56px}
-.flota.f2{right:-10px;bottom:84px;animation-delay:-2.5s}
+.flota.f1{left:-64px;top:118px}
+.flota.f2{right:-48px;bottom:74px;animation-delay:-2.5s}
 @keyframes flota{50%{transform:translateY(-10px)}}
-@media (max-width:900px){.flota.f1{left:0;top:-18px}.flota.f2{right:0;bottom:-18px}}
+@media (max-width:1100px){.flota.f1{left:-12px;top:-20px}.flota.f2{right:-8px;bottom:-20px}}
 @media (max-width:520px){.flota{display:none}}
 #chatWrap{will-change:transform}
 /* ===== Efectos (mismos de las plantillas) ===== */
@@ -115,7 +115,7 @@ a[style*="border-radius: 12px"]:hover,a[style*="border-radius: 10px"]:hover,butt
 <div style="flex: 1 1 520px; min-width: 0">
 <p style="margin: 0 0 22px; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #22D3A6; background: rgba(34,211,166,0.10); border: 1px solid rgba(34,211,166,0.30); padding: 7px 14px; border-radius: 999px">
 <span class="late" style="width: 8px; height: 8px; border-radius: 50%; background: #22D3A6"></span>IA y automatización para negocios · Saltillo y todo México</p>
-<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(40px, 5.4vw, 66px); line-height: 1.04; letter-spacing: -0.03em; color: #FFFFFF">Tu negocio atiende clientes <span id="rota" class="rota">las 24 horas</span>. <span class="grad">Tú dejas de vivir pegado al celular.</span></h1>
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(40px, 5.4vw, 66px); line-height: 1.04; letter-spacing: -0.03em; color: #FFFFFF">Tu negocio atiende clientes <span style="white-space: nowrap"><span id="rota" class="rota">las 24 horas</span>.</span> <span class="grad">Tú dejas de vivir pegado al celular.</span></h1>
 <p style="margin: 24px 0 0; font-size: 20px; color: #B6C4C0; max-width: 560px">Creo tu sitio web, un agente de IA que responde en WhatsApp y un CRM que ordena tus pedidos y clientes. Todo conectado y hecho a la medida de cómo trabaja tu negocio.</p>
 <div style="margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px">
 <a href="#contacto" style="background: #22D3A6; color: #0A1626; text-decoration: none; font-weight: 700; padding: 16px 26px; border-radius: 12px; font-size: 17px">Solicitar diagnóstico gratis</a>
@@ -128,6 +128,7 @@ Probar el agente en WhatsApp</a>
 
 <!-- Conversación de ejemplo -->
 <div id="chatWrap" style="position: relative; flex: 1 1 380px; min-width: 0; display: flex; justify-content: center">
+<div style="position: relative; width: 100%; max-width: 400px">
 <div class="flota f1" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B7A5F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"></path></svg>Respuesta al instante</div>
 <div class="flota f2" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B7A5F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"></path></svg>Aviso en tu celular</div>
 <figure id="chat" style="margin: 0; width: 100%; max-width: 400px; background: #FFFFFF; border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; box-shadow: 0 30px 80px rgba(0,0,0,0.45); overflow: hidden">
@@ -147,6 +148,7 @@ Probar el agente en WhatsApp</a>
 </div>
 <figcaption style="padding: 12px 20px; font-size: 13px; color: #5C6863; border-top: 1px solid #E3E5E0">Ejemplo de conversación con un agente de IA · <button type="button" id="replay" class="replay">Ver de nuevo</button></figcaption>
 </figure>
+</div>
 </div>
 </section>
 <div class="hero-stats" style="position: relative; max-width: 1200px; margin: 0 auto; padding: 0 24px 72px">
