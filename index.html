@@ -38,12 +38,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .rota{color:#22D3A6;display:inline-block;transition:opacity .35s,transform .35s}
 .rota.sale{opacity:0;transform:translateY(-10px)}
 .flota{position:absolute;z-index:2;display:flex;align-items:center;gap:8px;background:#FFFFFF;color:#0A1626;font-size:14px;font-weight:600;padding:10px 14px;border-radius:14px;box-shadow:0 14px 34px rgba(0,0,0,.30);animation:flota 5s ease-in-out infinite}
-.flota.f1{left:-64px;top:118px}
-.flota.f2{right:-48px;bottom:74px;animation-delay:-2.5s}
+.flota.f1{left:-34px;top:-22px}
+.flota.f2{right:-28px;bottom:-22px;animation-delay:-2.5s}
 @keyframes flota{50%{transform:translateY(-10px)}}
-@media (max-width:1100px){.flota.f1{left:-12px;top:-20px}.flota.f2{right:-8px;bottom:-20px}}
+@media (max-width:1100px){.flota.f1{left:-8px}.flota.f2{right:-8px}}
 @media (max-width:520px){.flota{display:none}}
 #chatWrap{will-change:transform}
+#chat{color:#0A1626}
 /* ===== Efectos (mismos de las plantillas) ===== */
 header#top{transition:box-shadow .3s, background .3s}
 header#top{-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px)}
@@ -598,7 +599,7 @@ document.querySelectorAll('a[href^="https://wa.me/"]').forEach(a => {
 
   // palabra que cambia en el titulo
   const rota = document.getElementById("rota");
-  const frases = ["las 24 horas", "a las 3 de la mañana", "en domingo", "mientras tú descansas"];
+  const frases = ["las 24 horas", "de madrugada", "en domingo", "en tu día libre"];
   let fi = 0;
   if (!reduce) setInterval(() => {
     rota.classList.add("sale");
