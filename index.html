@@ -555,15 +555,38 @@ Probar el agente en WhatsApp</a>
 /* CONFIG: cambia aqui tu numero (con 52, sin espacios) y tu correo */
 const WHATSAPP = "529624017470";
 const CORREO = "onlinefreedom.proyect@gmail.com";
+/* CRM: cada solicitud del formulario se anota sola en el tablero Ventas */
+const CRM = {
+  url: "https://uvfjtsjroydvhjpgvmdu.supabase.co",
+  llave: "sb_publishable_IdXNIhavHl-GbnYiwuVIzw_T1BFdHYs",
+  cuenta: "52bbe7a4-e6e2-41bb-aacd-a4045e15325a"
+};
+function anotarEnCrm(datos) {
+  if (!CRM.cuenta || CRM.cuenta === "CUENTA_PENDIENTE") return;
+  try {
+    fetch(CRM.url + "/rest/v1/rpc/diagnostico_solicitar", {
+      method: "POST",
+      keepalive: true,
+      headers: { "Content-Type": "application/json", apikey: CRM.llave, Authorization: "Bearer " + CRM.llave },
+      body: JSON.stringify({ p_account: CRM.cuenta, p: datos })
+    }).catch(function () {});
+  } catch (err) {}
+}
 document.getElementById("contacto-form").addEventListener("submit", function (e) {
   e.preventDefault();
   const f = new FormData(this);
   if (f.get("sitio")) return; // trampa anti-spam
-  const txt = "Hola, quiero solicitar un diagnostico.\n" +
+  const folio = "OF-" + Math.random().toString(36).slice(2, 8).toUpperCase();
+  const giro = f.get("tipo") === "Elige una opción" ? "" : f.get("tipo");
+  anotarEnCrm({
+    origen: "web", folio: folio, nombre: f.get("nombre"), telefono: f.get("whatsapp"),
+    correo: f.get("correo"), giro: giro, reto: f.get("reto")
+  });
+  const txt = "Hola, quiero solicitar un diagnostico (folio " + folio + ").\n" +
     "Nombre: " + f.get("nombre") + "\n" +
     "WhatsApp: " + f.get("whatsapp") + "\n" +
     (f.get("correo") ? "Correo: " + f.get("correo") + "\n" : "") +
-    "Negocio: " + f.get("tipo") + "\n" +
+    (giro ? "Negocio: " + giro + "\n" : "") +
     "Mayor reto: " + f.get("reto");
   window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(txt), "_blank");
 });
